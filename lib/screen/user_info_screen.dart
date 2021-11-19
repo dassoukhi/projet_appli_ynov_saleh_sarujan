@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_appli_ynov/model/Utilisateur.dart';
 import 'package:projet_appli_ynov/res/custom_colors.dart';
 import 'package:projet_appli_ynov/screen/chats_screen.dart';
 import 'package:projet_appli_ynov/screen/presence_screen.dart';
+import 'package:projet_appli_ynov/screen/profile.dart';
 import 'package:projet_appli_ynov/screen/sign_in_screen.dart';
 import 'package:projet_appli_ynov/utils/authentication.dart';
 import 'package:projet_appli_ynov/widgets/app_bar_title.dart';
@@ -164,11 +167,20 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
     var markerIdVal = specifyId;
     final MarkerId markerId = MarkerId(markerIdVal);
+    final Utilisateur userMarker = Utilisateur(uid: specify['uid'], name: specify['name'], presence: specify['presence'], lastSeenInEpoch: specify['last_seen'], urlAvatar: specify['urlAvatar'], location: specify['location'], likes: specify['likes']);
     final Marker marker = Marker(
       markerId: markerId,
       position: LatLng(specify['location'].latitude,specify['location'].longitude),
       infoWindow: InfoWindow(title: specify['name']),
       icon: dataBytes !=null ? BitmapDescriptor.fromBytes(dataBytes.buffer.asUint8List()) : BitmapDescriptor.defaultMarker,
+      onTap: () async{
+        print("in ontap : " + specify['name']);
+        await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Profile(user: userMarker, currentId: _user.uid,),
+          ),
+        );
+    }
 
     );
     setState(() {
@@ -182,6 +194,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       if(myMocData.docs.isNotEmpty){
         for (int i=0; i<myMocData.docs.length; i++){
           initMarker(myMocData.docs[i].data(), myMocData.docs[i].id);
+          print(myMocData.docs[i].data()['name']);
         }
       }
     });
@@ -265,13 +278,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 color: Colors.amber[600],
                 width: double.infinity,
                 height: 600.0,
-                /*child: GoogleMap(
-                    onMapCreated: _onMapCreated,
-                    initialCameraPosition: monument,
-                    myLocationButtonEnabled: true,
-                    myLocationEnabled: true,
-                    markers: Set<Marker>.of(markers.values),
-                  ),*/
                 child: Stack(
                   children: [
                     Positioned.fill(
@@ -295,16 +301,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               )
                   : ElevatedButton(
-                /*style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    Colors.redAccent,
-                  ),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),*/
                 style: ElevatedButton.styleFrom(
                     primary:  Colors.redAccent,
                     padding: const EdgeInsets.fromLTRB(79.0, 10.0, 79.0, 10.0),
@@ -312,8 +308,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)
                 ),
                 onPressed: () async {
-                  /*SharedPreferences prefs = await SharedPreferences.getInstance();
-                  print(prefs.getString('uid'));*/
                   setState(() {
                     _isSigningOut = true;
                   });
@@ -338,16 +332,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 ),
               ),
               ElevatedButton(
-                /*style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    Colors.blue,
-                  ),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),*/
                 style: ElevatedButton.styleFrom(
                   primary:  Colors.blue,
                   padding: const EdgeInsets.fromLTRB(56.0, 10.0, 56.0, 10.0),
@@ -373,16 +357,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 ),
               ),
               ElevatedButton(
-                /*style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    Colors.green,
-                  ),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),*/
                 style: ElevatedButton.styleFrom(
                     primary:  Colors.green,
                     padding: const EdgeInsets.fromLTRB(95.0, 10.0, 95.0, 10.0),

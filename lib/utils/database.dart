@@ -35,6 +35,7 @@ class Database {
           .now()
           .millisecondsSinceEpoch,
       location: loc ?? GeoPoint(0, 0),
+      likes: []
     );
 
     var data = utilisateur.toJson();

@@ -169,18 +169,18 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     final MarkerId markerId = MarkerId(markerIdVal);
     final Utilisateur userMarker = Utilisateur(uid: specify['uid'], name: specify['name'], presence: specify['presence'], lastSeenInEpoch: specify['last_seen'], urlAvatar: specify['urlAvatar'], location: specify['location'], likes: specify['likes']);
     final Marker marker = Marker(
-      markerId: markerId,
-      position: LatLng(specify['location'].latitude,specify['location'].longitude),
-      infoWindow: InfoWindow(title: specify['name']),
-      icon: dataBytes !=null ? BitmapDescriptor.fromBytes(dataBytes.buffer.asUint8List()) : BitmapDescriptor.defaultMarker,
-      onTap: () async{
-        print("in ontap : " + specify['name']);
-        await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Profile(user: userMarker, currentId: _user.uid,),
-          ),
-        );
-    }
+        markerId: markerId,
+        position: LatLng(specify['location'].latitude,specify['location'].longitude),
+        infoWindow: InfoWindow(title: specify['name']),
+        icon: dataBytes !=null ? BitmapDescriptor.fromBytes(dataBytes.buffer.asUint8List()) : BitmapDescriptor.defaultMarker,
+        onTap: () async{
+          print("in ontap : " + specify['name']);
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Profile(user: userMarker, currentId: _user.uid,),
+            ),
+          );
+        }
 
     );
     setState(() {
@@ -205,187 +205,187 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: CustomColors.firebaseNavy,
-      appBar: AppBar(
-        elevation: 0,
         backgroundColor: CustomColors.firebaseNavy,
-        title: AppBarTitle(),
-      ),
-      body: SingleChildScrollView(child:
-      SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16.0,
-            right: 16.0,
-            bottom: 20.0,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(),
-              _user.photoURL != null
-                  ? ClipOval(
-                child: Material(
-                  color: CustomColors.firebaseGrey.withOpacity(0.3),
-                  child: Image.network(
-                    _user.photoURL!,
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-              )
-                  : ClipOval(
-                child: Material(
-                  color: CustomColors.firebaseGrey.withOpacity(0.3),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Icon(
-                      Icons.person,
-                      size: 60,
-                      color: CustomColors.firebaseGrey,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: CustomColors.firebaseNavy,
+          title: AppBarTitle(),
+        ),
+        body: SingleChildScrollView(child:
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+              bottom: 20.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(),
+                _user.photoURL != null
+                    ? ClipOval(
+                  child: Material(
+                    color: CustomColors.firebaseGrey.withOpacity(0.3),
+                    child: Image.network(
+                      _user.photoURL!,
+                      fit: BoxFit.fitHeight,
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Text(
-                'Hello',
-                style: TextStyle(
-                  color: CustomColors.firebaseGrey,
-                  fontSize: 26,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                _user.displayName!,
-                style: TextStyle(
-                  color: CustomColors.firebaseYellow,
-                  fontSize: 26,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                '( ${_user.email!} )',
-                style: TextStyle(
-                  color: CustomColors.firebaseOrange,
-                  fontSize: 20,
-                  letterSpacing: 0.5,
-                ),
-              ),
-              const SizedBox(height: 24.0),
-              Text('\n'),
-              Container(
-                margin: const EdgeInsets.all(10.0),
-                color: Colors.amber[600],
-                width: double.infinity,
-                height: 600.0,
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child:
-                      GoogleMap(
-                        onMapCreated: _onMapCreated,
-                        initialCameraPosition: monument,
-                        myLocationButtonEnabled: true,
-                        myLocationEnabled: true,
-                        markers: Set<Marker>.of(markers.values),
+                )
+                    : ClipOval(
+                  child: Material(
+                    color: CustomColors.firebaseGrey.withOpacity(0.3),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Icon(
+                        Icons.person,
+                        size: 60,
+                        color: CustomColors.firebaseGrey,
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10.0),
-              Text('\n'),
+                const SizedBox(height: 16.0),
+                Text(
+                  'Hello',
+                  style: TextStyle(
+                    color: CustomColors.firebaseGrey,
+                    fontSize: 26,
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  _user.displayName!,
+                  style: TextStyle(
+                    color: CustomColors.firebaseYellow,
+                    fontSize: 26,
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  '( ${_user.email!} )',
+                  style: TextStyle(
+                    color: CustomColors.firebaseOrange,
+                    fontSize: 20,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                const SizedBox(height: 24.0),
+                Text('\n'),
+                Container(
+                  margin: const EdgeInsets.all(10.0),
+                  color: Colors.amber[600],
+                  width: double.infinity,
+                  height: 600.0,
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                        child:
+                        GoogleMap(
+                          onMapCreated: _onMapCreated,
+                          initialCameraPosition: monument,
+                          myLocationButtonEnabled: true,
+                          myLocationEnabled: true,
+                          markers: Set<Marker>.of(markers.values),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                Text('\n'),
 
-              _isSigningOut
-                  ? const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              )
-                  : ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary:  Colors.redAccent,
-                    padding: const EdgeInsets.fromLTRB(79.0, 10.0, 79.0, 10.0),
-                    textStyle:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)
-                ),
-                onPressed: () async {
-                  setState(() {
-                    _isSigningOut = true;
-                  });
-                  await Authentication.signOut(context: context);
-                  setState(() {
-                    _isSigningOut = false;
-                  });
-                  Navigator.of(context)
-                      .pushReplacement(_routeToSignInScreen());
-                },
-                child: const Padding(
-                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text(
-                    'Sign Out',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 2,
+                _isSigningOut
+                    ? const CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                )
+                    : ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary:  Colors.redAccent,
+                      padding: const EdgeInsets.fromLTRB(79.0, 10.0, 79.0, 10.0),
+                      textStyle:
+                      const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)
+                  ),
+                  onPressed: () async {
+                    setState(() {
+                      _isSigningOut = true;
+                    });
+                    await Authentication.signOut(context: context);
+                    setState(() {
+                      _isSigningOut = false;
+                    });
+                    Navigator.of(context)
+                        .pushReplacement(_routeToSignInScreen());
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    child: Text(
+                      'Sign Out',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 2,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary:  Colors.blue,
-                  padding: const EdgeInsets.fromLTRB(56.0, 10.0, 56.0, 10.0),
-                  textStyle:
-                  const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)
-              ),
-                onPressed: () async {
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary:  Colors.blue,
+                      padding: const EdgeInsets.fromLTRB(56.0, 10.0, 56.0, 10.0),
+                      textStyle:
+                      const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)
+                  ),
+                  onPressed: () async {
 
-                  Navigator.of(context)
-                      .push(_routeToPresenceScreen());
-                },
-                child: const Padding(
-                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text(
-                    'Users Online',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 2,
+                    Navigator.of(context)
+                        .push(_routeToPresenceScreen());
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    child: Text(
+                      'Users Online',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 2,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary:  Colors.green,
-                    padding: const EdgeInsets.fromLTRB(95.0, 10.0, 95.0, 10.0),
-                    textStyle:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)
-                ),
-                onPressed: () async {
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary:  Colors.green,
+                      padding: const EdgeInsets.fromLTRB(95.0, 10.0, 95.0, 10.0),
+                      textStyle:
+                      const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)
+                  ),
+                  onPressed: () async {
 
-                  Navigator.of(context)
-                      .push(_routeToChatsScreen());
-                },
-                child: const Padding(
-                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text(
-                    'Chats',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 2,
+                    Navigator.of(context)
+                        .push(_routeToChatsScreen());
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    child: Text(
+                      'Chats',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 2,
+                      ),
                     ),
                   ),
-                ),
-              )
+                )
 
-            ],
+              ],
+            ),
           ),
-        ),
-      ),)
+        ),)
 
     );
   }

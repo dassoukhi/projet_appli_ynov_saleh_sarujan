@@ -9,6 +9,7 @@ class Utilisateur{
   bool presence;
   int lastSeenInEpoch;
   GeoPoint location;
+  List<dynamic> likes;
 
   Utilisateur({
     required this.uid,
@@ -17,6 +18,7 @@ class Utilisateur{
     required this.lastSeenInEpoch,
     required this.urlAvatar,
     required this.location,
+    required this.likes,
 
   });
 
@@ -27,7 +29,9 @@ class Utilisateur{
         urlAvatar: json['urlAvatar'],
         presence: json['presence'],
         lastSeenInEpoch: json['last_seen'],
-        location: json['location']
+        location: json['location'],
+        likes: json['likes']
+
     );
   }
 
@@ -38,6 +42,7 @@ class Utilisateur{
     lastSeenInEpoch: json['last_seen'],
     presence: json['presence'],
     location: json['location'],
+    likes: json['likes'],
   );
 
   Map<String, dynamic> toJson() {
@@ -49,6 +54,7 @@ class Utilisateur{
     data['presence'] = this.presence;
     data['last_seen'] = this.lastSeenInEpoch;
     data['location'] = this.location;
+    data['likes'] = this.likes;
 
     return data;
   }

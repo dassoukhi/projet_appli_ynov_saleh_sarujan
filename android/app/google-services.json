@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "212388593074",
+    "firebase_url": "https://projetappliynov-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "projetappliynov",
+    "storage_bucket": "projetappliynov.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212388593074:android:1d79e0afb74ab3e2b678ab",
+        "android_client_info": {
+          "package_name": "com.example.projet_appli_ynov"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212388593074-4a2nmpgvt4qrmeojpa76cjben5ani3gi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projet_appli_ynov",
+            "certificate_hash": "edc10d8ee29b4f2c0216847aff55a631e820331d"
+          }
+        },
+        {
+          "client_id": "212388593074-q05k2vllebo09umom141f8o505dble4r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projet_appli_ynov",
+            "certificate_hash": "e9a1c61db584905e22163269a02bd5ec10005c3f"
+          }
+        },
+        {
+          "client_id": "212388593074-hbk7g484otfdhr67co13oum2q1t0of71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0ErOpeKAm94-2R28xV3zB6bqQUiluPjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212388593074-hbk7g484otfdhr67co13oum2q1t0of71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
